@@ -19,9 +19,7 @@ def extract_data(url):
         address_element = soup.find('div', {'class': 'visitor-detail-info'}).find_all('h2')[2]
         address = address_element.text.strip() if address_element else ""
 
-        # company_name_element = soup.find('div', {'class': 'visitor-top'}).find_all('h4', string='Company Name :')
-        # company_name = company_name_element.find_next('h4').text.strip() if company_name_element and company_name_element.find_next('h4') else ""
-
+        id = url
         # meeting_person_element = soup.find('div', {'class': 'visitor-top'}).find('h4', string='Meeting Person :')
         # meeting_person = meeting_person_element.find_next('h4').text.strip() if meeting_person_element and meeting_person_element.find_next('h4') else ""
 
@@ -49,6 +47,7 @@ def extract_data(url):
             'Name': [name],
             'Contact Number': [contact_number],
             'Address': [address],
+            'ID':[id],
             # 'Company Name': [company_name],
             # 'Meeting Person': [meeting_person],
             # 'Pass Type': [pass_type],
@@ -73,16 +72,16 @@ def extract_data(url):
 base_url = "https://curovms.com/VP/VisitorPass.aspx?i="
 project = "19"
 
-# list = [68109284546219, 25858309136619, 25858309136219,68109284546219]
+list = [68109284546219, 25858309136619, 25858309136219,68109284546219]
 
 
-for i in range(258583,259000):
-    for j in range(100000,999999):
+for i in list:
+    # for j in range(100000,999999):
 
         try:
 
-            url = base_url+str(i)+str(j)+project
-            data = data +  extract_data(url)
+            url = base_url+str(i)
+            data = extract_data(url)
         
 
             if data is not None:

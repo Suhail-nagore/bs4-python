@@ -26,10 +26,13 @@ def extract_data(url):
         address_element = soup.find('div', {'class': 'visitor-detail-info'}).find_all('h2')[2]
         address = address_element.text.strip() if address_element else ""
 
+        id = url
+
         data = {
             'Name': [name],
             'Contact Number': [contact_number],
             'Address': [address],
+            'ID':[id],
         }
 
         return pd.DataFrame(data)
